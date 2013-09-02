@@ -58,14 +58,12 @@ class WikipediaGeoHandler(xml.sax.ContentHandler):
             match = self.regex.match(line)
             if match:
                 for grp in match.groups():
-                    coords = parse_coord.parse_coord(grp)
                     try:
                         coords = parse_coord.parse_coord(grp)
+                        if coords:
+                            self.textLines.append(coords)
                     except:
-                        continue
-
-                    if coords:
-                        self.textLines.append(coords)
+                        pass
         elif self.inPage and self.inTitle:
             self.titleLines.append(line)
 
