@@ -16,8 +16,8 @@ dmsns = re.compile("{{coord.*?\|\s*([0-9\.]*)\s*\|\s*([0-9\.]*)\s*\|\s*([0-9\.]*
 # {{coord|dd|dd}}
 dd = re.compile("{{coord.*?\|\s*([0-9\.-]*)\s*\|\s*([0-9\.-]*)\s*[^NSEW0-9\.]")
 
-type_re = re.compile(".*type:([^_|]*)")
-name_re = re.compile(".*name=([^|]*)")
+type_re = re.compile(".*type:([^_|}]*)")
+name_re = re.compile(".*name=([^|}]*)")
 
 def adjust_ns(lat, lon, ns, ew):
     if ns == "S":

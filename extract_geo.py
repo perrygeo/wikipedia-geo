@@ -2,6 +2,8 @@ import xml.sax
 import re
 import parse_coord
 
+out_fields = ['title', 'point', 'name', 'type']
+
 class WikipediaGeoHandler(xml.sax.ContentHandler):
     def __init__(self):
         xml.sax.ContentHandler.__init__(self)
@@ -30,10 +32,23 @@ class WikipediaGeoHandler(xml.sax.ContentHandler):
             self.inPage = False
             for coord in self.textLines:
                 coord['title'] = self.currTitle
-                print coord
+                data = []
+                if not coord['point']:
+                    continue
+                for field in out_fields:
+                    if field == 'point':
+                        data.append(coord['point'][0])
+                        data.append(coord['point'][1])
+                    else:
+                        try:
+                            data.append(coord[field])
+                        except KeyError:
+                            data.append('')
+                print '\t'.join([unicode(x) for x in data])
+
         elif name == "title":
             self.inTitle = False
-            self.currTitle = ''.join(self.titleLines)
+            self.currTitle = u''.join(self.titleLines)
         elif name == "text":
             self.inText = False
 
