@@ -8,12 +8,23 @@ The SAX parser has a terrible API but it's a
 reasonable way to parse the 40GB+ XML file from 
 wikipedia without loading into memory.
 
+Tab-delimited output to stdout with columns:
+
+```
+article_title	longitude	latitude	name 	type
+```
+
+example:
+
 ```
 ...
-Banca d'Italia 	(12.488888888888889, 41.89722222222222)
-Battle of Blenheim 	(10.633333333333333, 48.63333333333333)
-Battle of Ramillies 	(4.912777777777778, 50.63861111111111)
-Bohemia 	(15.0, 50.0)
-Barcelona 	(2.1521944444444445, 41.416555555555554)
+Wangford Warren	0.583	52.427		landmark
+Raffles Bay	132.383333333	-11.2666666667		waterbody
+Friedrichsdorf station	8.64444444444	50.2522222222		railwaystation
+Mount Ovit Tunnel	40.82382	40.62438		
+Ambulapcha Glacier	86.9130555556	27.8930555556		
+Spårvägsmuseet	18.0986111111	59.3116666667		landmark
+Dughla	86.805	27.9241666667		
+Glen Pean powerline span	-5.48005555556	56.9486944444	Glen Pean Powerline Span	landmark
 ...
 ```
