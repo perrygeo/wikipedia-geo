@@ -44,7 +44,8 @@ class WikipediaGeoHandler(xml.sax.ContentHandler):
                             data.append(coord[field])
                         except KeyError:
                             data.append('')
-                print '\t'.join([unicode(x) for x in data])
+                tabdelim = u'\t'.join([unicode(x) for x in data])
+                print tabdelim.encode('utf-8')
 
         elif name == "title":
             self.inTitle = False
