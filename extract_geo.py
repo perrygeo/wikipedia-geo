@@ -29,7 +29,8 @@ class WikipediaGeoHandler(xml.sax.ContentHandler):
         if name == "page":
             self.inPage = False
             for coord in self.textLines:
-                print self.currTitle, "\t", coord
+                coord['title'] = self.currTitle
+                print coord
         elif name == "title":
             self.inTitle = False
             self.currTitle = ''.join(self.titleLines)
@@ -42,8 +43,13 @@ class WikipediaGeoHandler(xml.sax.ContentHandler):
             if match:
                 for grp in match.groups():
                     coords = parse_coord.parse_coord(grp)
+                    try:
+                        coords = parse_coord.parse_coord(grp)
+                    except:
+                        continue
+
                     if coords:
-                        self.textLines.append(str(coords))
+                        self.textLines.append(coords)
         elif self.inPage and self.inTitle:
             self.titleLines.append(line)
 
